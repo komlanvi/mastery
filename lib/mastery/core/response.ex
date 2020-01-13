@@ -4,4 +4,19 @@ defmodule Mastery.Core.Response do
   """
 
   defstruct [:quiz_title, :template_name, :to, :email, :answer, :correct, :timestamps]
+
+  def new(quiz, email, answer) do
+    question = quiz.current_question
+    template = question.template
+
+    %__MODULE__{
+      quize_title: quiz.title,
+      template_name: template.name,
+      to: question.asked,
+      email: email,
+      answer: answer,
+      correct: template.checker.(question.substitution, answer),
+      timestamps: DateTime.utc_now()
+    }
+  end
 end
