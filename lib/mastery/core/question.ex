@@ -15,7 +15,7 @@ defmodule Mastery.Core.Question do
     |> evaluate(template)
   end
 
-  defp build_substitution({name, choices_or_ generator}) do
+  defp build_substitution({name, choices_or_generator}) do
     {name, choose(choices_or_generator)}
   end
 
