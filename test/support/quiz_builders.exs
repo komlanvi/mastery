@@ -1,9 +1,11 @@
-defmodule MasteryTest.QuizBuilders do
+defmodule MasteryTest.Support.QuizBuilders do
   defmacro __using__(_options) do
     quote do
-      import MasteryTest.QuizBuilders, only: :functions
+      import MasteryTest.Support.QuizBuilders, only: :functions
     end
   end
+
+  alias Mastery.Core.{Template, Question, Quiz}
 
   def template_fields(overrides \\ []) do
     Keyword.merge(
@@ -55,7 +57,7 @@ defmodule MasteryTest.QuizBuilders do
     |> Quiz.new()
   end
 
-  def build_questions(overrides \\ []) do
+  def build_question(overrides \\ []) do
     overrides
     |> template_fields()
     |> Template.new()

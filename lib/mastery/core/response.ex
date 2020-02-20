@@ -3,7 +3,7 @@ defmodule Mastery.Core.Response do
   A response provided by a user
   """
 
-  defstruct [:quiz_title, :template_name, :to, :email, :answer, :correct, :timestamps]
+  defstruct [:quiz_title, :template_name, :to, :email, :answer, :correct, :timestamp]
 
   def new(quiz, email, answer) do
     question = quiz.current_question
@@ -16,7 +16,7 @@ defmodule Mastery.Core.Response do
       email: email,
       answer: answer,
       correct: template.checker.(question.substitutions, answer),
-      timestamps: DateTime.utc_now()
+      timestamp: DateTime.utc_now()
     }
   end
 end
